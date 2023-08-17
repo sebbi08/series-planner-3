@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react'
 import { ISeries } from '../../models/series';
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 
 export const SeriesList = () => {
 
@@ -15,15 +16,21 @@ export const SeriesList = () => {
 
     useEffect(() => {
         fetchSeries();
-    },[])
+    }, [])
 
     return (
         <div>
-
             {allSeries.map(series => {
-                return (<div>
-                    {series.name}
-                </div>)
+                return (<Card className='mt-4'>
+                    <CardHeader>
+                        <CardTitle>
+                            {series.name}
+                        </CardTitle>
+                        <CardContent>
+                            <div>{series.season} : {series.episode}</div>
+                        </CardContent>
+                    </CardHeader>
+                </Card>)
             })}
         </div>
     )
